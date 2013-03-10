@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Backbone.js app - Twitter API Search</title>
+        <meta name="description" content="Single page app - Backbone.js - Twitter Search">
+        <meta name="author" content="Josip Filipović - @josipfilipovic">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="css/normalize.min.css">
+        <link rel="stylesheet" href="css/main.css">
+		
+        <!-- usage of HTML5 Boilerplate -->
+        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+        
+        <!-- usage of Require.js AMD loader -->
+   		<script data-main="js/main" src="js/vendor/require.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]><p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p><![endif]-->
+        
+        <!-- intitial markup -->
+        <section id="appwrap">
+            <form id="searcharea">
+                <input type="search" placeholder="Search" class="searchfield">
+                <button type="submit" class="okbutton" id="searchbutton">Search</button>
+                <button class="cbutton" id="resetbutton">Reset</button>
+            </form>
+            <ul id="results"></ul>
+        </section>
+            
+        <!-- JS template -->
+        <script id="template" type="text/template">
+			<% tweets.each(function(tweet) { %>
+				<li>
+					<a href="http://twitter.com/<%= tweet.get("from_user") %>" target="_blank"><img src="<%= tweet.get("profile_image_url") %>" alt="sometext" width="48" height="48"></a>
+					<div class="txt">
+						<a href="http://twitter.com/<%= tweet.get("from_user") %>" target="_blank" class="user"> <strong><%= tweet.get("from_user_name") %></strong> <span class="name">@<%= tweet.get("from_user") %></span></a>
+						<p><%=tweet.get("text")%></p>
+						<span class="date"><%=tweet.get("created_at")%></span>
+					</div>
+				</li>
+			<% }); %>
+		</script>        
+    </body>
+</html>
